@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "RT";
+  src: url("./RostelecomBasis-Regular.woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "RT";
+  src: url("./RostelecomBasis-Medium.woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "RT";
+  src: url("./RostelecomBasis-Bold.woff2");
+  font-weight: 600;
+  font-style: normal;
+}
