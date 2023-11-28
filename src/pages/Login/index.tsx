@@ -1,6 +1,10 @@
+import classNames from "classnames";
+import { Button } from "components";
+
 function Login() {
   const loading = false;
   const error = false;
+  const success = true;
 
   return (
     <div className="container">
@@ -17,7 +21,10 @@ function Login() {
           <input
             type="number"
             disabled
-            className="w-[640px] h-[160px] rounded-[32px] border-2 border-[#F54D0D] text-[#000] text-[96px] font-bold text-center"
+            className={classNames(
+              "w-[640px] h-[160px] rounded-[32px] border-2 text-[#000] text-[96px] font-bold text-center",
+              success ? "border-[#000]" : "border-[#F54D0D]"
+            )}
           />
 
           <svg
@@ -31,6 +38,21 @@ function Login() {
         <span className="text-[#000] text-[32px] font-bold">
           У меня пока нет ID
         </span>
+
+        {false && (
+          <div className="mt-[55px] grid grid-cols-[1fr_1fr_1fr] gap-9">
+            {new Array(10)
+              .fill("")
+              .map(
+                (item, index) =>
+                  index > 0 && (
+                    <div className="w-[160px] h-[160px] rounded-full border-2 border-[#8D1BFF] flex items-center justify-center text-[80px] font-bold text-[#000] duration-200 hover:bg-[#70F] hover:text-white cursor-pointer">
+                      {index}
+                    </div>
+                  )
+              )}
+          </div>
+        )}
 
         {loading ? (
           <div className="mt-[230px] flex flex-col gap-8 items-center">
@@ -54,17 +76,24 @@ function Login() {
             </span>
           </div>
         ) : (
-          <div className="mt-[55px] grid grid-cols-[1fr_1fr_1fr] gap-9">
-            {new Array(10)
-              .fill("")
-              .map(
-                (item, index) =>
-                  index > 0 && (
-                    <div className="w-[160px] h-[160px] rounded-full border-2 border-[#8D1BFF] flex items-center justify-center text-[80px] font-bold text-[#000] duration-200 hover:bg-[#70F] hover:text-white cursor-pointer">
-                      {index}
-                    </div>
-                  )
-              )}
+          <div className="mt-[230px] flex flex-col gap-[52px] items-center">
+            <Button
+              text="НАЧАТЬ"
+              disabled={!success}
+              className="w-[640px] bg-[#00B23C]"
+            />
+
+            {success ? (
+              <p className="text-[#000] text-[32px] font-bold text-center">
+                Ну что, %username%, начнем игру? У вас будет 3 минуты, чтобы
+                собрать картинку из фрагментов
+              </p>
+            ) : (
+              <p className="text-[#F40A0A] text-[32px] font-bold text-center">
+                %username%, вам уже начислены баллы за эту игру. За повторное
+                участие баллы не начисляются
+              </p>
+            )}
           </div>
         )}
       </div>
