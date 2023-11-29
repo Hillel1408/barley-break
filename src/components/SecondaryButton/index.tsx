@@ -4,10 +4,12 @@ const SecondaryButton = ({
   text,
   className,
   children,
+  clickHandler,
 }: {
   text: string;
   className?: string;
   children?: JSX.Element;
+  clickHandler?: () => void;
 }) => {
   return (
     <button
@@ -15,6 +17,7 @@ const SecondaryButton = ({
         "text-[32px] font-bold flex items-center gap-[11px]",
         className
       )}
+      onClick={clickHandler}
     >
       {children}
       {text}
