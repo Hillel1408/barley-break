@@ -15,7 +15,7 @@ function Login() {
 
     useEffect(() => {
         value.length === 6 &&
-            (async function fetchData() {
+            (async () => {
                 try {
                     setLoading(true);
                     const response = await axios.post("/v1/transactions/third-party-check", {
