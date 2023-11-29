@@ -5,11 +5,4 @@ import QrModal from "components/QrModal";
 import ImageModal from "components/ImageModal";
 import FinishModal from "components/FinishModal";
 
-export {
-  Button,
-  SecondaryButton,
-  LayoutModal,
-  QrModal,
-  ImageModal,
-  FinishModal,
-};
+export { Button, SecondaryButton, LayoutModal, QrModal, ImageModal, FinishModal };
