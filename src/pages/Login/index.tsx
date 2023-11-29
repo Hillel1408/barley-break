@@ -1,14 +1,38 @@
 import classNames from "classnames";
 import { Button, QrModal } from "components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "http/axios";
 
 function Login() {
-  const loading = false;
-  const error = false;
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const success = false;
 
   const [active, setActive] = useState(false);
   const [value, setValue] = useState("");
+
+  const date = new Date().toLocaleDateString("en-ca");
+
+  useEffect(() => {
+    value.length === 6 &&
+      (async function fetchData() {
+        try {
+          setLoading(true);
+          const response = await axios.post(
+            "/v1/transactions/third-party-check",
+            {
+              user_id: value,
+              day: date,
+              hash: "#7aSJ!n67%8912sS",
+            }
+          );
+        } catch (e: any) {
+          setError(e.response?.data?.message);
+        } finally {
+          setLoading(false);
+        }
+      })();
+  }, [value, date]);
 
   return (
     <>
@@ -53,10 +77,11 @@ function Login() {
             У меня пока нет ID
           </span>
 
-          {true ? (
+          {value.length < 6 ? (
             <div className="mt-[55px] grid grid-cols-[1fr_1fr_1fr] gap-9">
               {new Array(10).fill("").map((item, index) => (
                 <button
+                  key={index}
                   className={classNames(
                     "w-[160px] h-[160px] rounded-full border-2 border-[#8D1BFF] flex items-center justify-center text-[80px] font-bold text-[#000] duration-200 active:bg-[#70F] active:text-white cursor-pointer disabled:cursor-default disabled:active:text-[#000] disabled:active:bg-[white]",
                     index === 0 && "order-1 col-start-2"
