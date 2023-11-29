@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { SecondaryButton, Button, ImageModal, FinishModal } from "components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Game() {
     const win = false;
@@ -8,6 +8,23 @@ function Game() {
 
     const [active, setActive] = useState(false);
     const [activeModal, setActiveModal] = useState(false);
+
+    const length = 6;
+
+    const chunkArray = (arr: number[], cnt: number) =>
+        arr.reduce(
+            (prev: number[][], cur: number, i: number, a: number[]) =>
+                !(i % cnt) ? prev.concat([a.slice(i, i + cnt)]) : prev,
+            [],
+        );
+
+    const generateArray = (length: number) => {
+        const values = [...Array(length)].map((_, i) => i + 1);
+        const result = [...Array(length)].map(
+            () => values.splice(Math.floor(Math.random() * values.length), 1)[0],
+        );
+        return chunkArray(result, 3);
+    };
 
     return (
         <>
@@ -55,27 +72,16 @@ function Game() {
                             win && "border-8 border-[#00B23C] rounded-[6px]",
                         )}
                     >
-                        <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
-                            <img src="/images/1/3x2/4.jpeg" alt="" />
-                        </div>
-
-                        <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
-                            <img src="/images/1/3x2/2.jpeg" alt="" />
-                        </div>
-
-                        <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
-                            <img src="/images/1/3x2/5.jpeg" alt="" />
-                        </div>
-
-                        <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]"></div>
-
-                        <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
-                            <img src="/images/1/3x2/6.jpeg" alt="" />
-                        </div>
-
-                        <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
-                            <img src="/images/1/3x2/1.jpeg" alt="" />
-                        </div>
+                        {generateArray(length).map((arr) =>
+                            arr.map((item) => (
+                                <div
+                                    key={item}
+                                    className="w-[268px] h-[268px] border-[0.5px] border-[#000]"
+                                >
+                                    <img src={`/images/1/3x2/${item}.jpeg`} alt="" />
+                                </div>
+                            )),
+                        )}
                     </div>
 
                     {win ? (
