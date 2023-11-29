@@ -51,29 +51,29 @@ function Game() {
 
           <div
             className={classNames(
-              "grid grid-cols-[1fr_1fr_1fr] mb-[226px]",
+              "grid grid-cols-[1fr_1fr_1fr] mb-[226px] border-[0.5px] border-[#000]",
               win && "border-8 border-[#00B23C] rounded-[6px]"
             )}
           >
-            <div className="w-[268px] h-[268px] border border-[#000]">
+            <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
               <img src="/images/1/3x2/4.jpeg" alt="" />
             </div>
 
-            <div className="w-[268px] h-[268px] border border-[#000]">
+            <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
               <img src="/images/1/3x2/2.jpeg" alt="" />
             </div>
 
-            <div className="w-[268px] h-[268px] border border-[#000]">
+            <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
               <img src="/images/1/3x2/5.jpeg" alt="" />
             </div>
 
-            <div className="w-[268px] h-[268px] border border-[#000]"></div>
+            <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]"></div>
 
-            <div className="w-[268px] h-[268px] border border-[#000]">
+            <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
               <img src="/images/1/3x2/6.jpeg" alt="" />
             </div>
 
-            <div className="w-[268px] h-[268px] border border-[#000]">
+            <div className="w-[268px] h-[268px] border-[0.5px] border-[#000]">
               <img src="/images/1/3x2/1.jpeg" alt="" />
             </div>
           </div>
