@@ -8,6 +8,7 @@ function Login() {
   const success = false;
 
   const [active, setActive] = useState(false);
+  const [value, setValue] = useState("");
 
   return (
     <>
@@ -25,6 +26,7 @@ function Login() {
             <input
               type="number"
               disabled
+              value={value}
               className={classNames(
                 "w-[640px] h-[160px] rounded-[32px] border-2 text-[#000] text-[96px] font-bold text-center",
                 success ? "border-[#000]" : "border-[#F54D0D]"
@@ -32,8 +34,11 @@ function Login() {
             />
 
             <svg
-              className="h-[72px] w-[85px] absolute top-1/2 -translate-y-1/2 -right-[107px]"
+              className="h-[72px] w-[85px] absolute top-1/2 -translate-y-1/2 -right-[107px] cursor-pointer fill-black duration-200 active:fill-[#8D1BFF]"
               aria-hidden="true"
+              onClick={() => {
+                setValue((prev) => prev.slice(0, -1));
+              }}
             >
               <use xlinkHref="/sprites/sprite.svg#delete"></use>
             </svg>
@@ -51,14 +56,18 @@ function Login() {
           {true ? (
             <div className="mt-[55px] grid grid-cols-[1fr_1fr_1fr] gap-9">
               {new Array(10).fill("").map((item, index) => (
-                <div
+                <button
                   className={classNames(
-                    "w-[160px] h-[160px] rounded-full border-2 border-[#8D1BFF] flex items-center justify-center text-[80px] font-bold text-[#000] duration-200 hover:bg-[#70F] hover:text-white cursor-pointer",
+                    "w-[160px] h-[160px] rounded-full border-2 border-[#8D1BFF] flex items-center justify-center text-[80px] font-bold text-[#000] duration-200 active:bg-[#70F] active:text-white cursor-pointer disabled:cursor-default disabled:active:text-[#000] disabled:active:bg-[white]",
                     index === 0 && "order-1 col-start-2"
                   )}
+                  onClick={() => {
+                    setValue((prev) => prev + index);
+                  }}
+                  disabled={value.length === 6}
                 >
                   {index}
-                </div>
+                </button>
               ))}
             </div>
           ) : loading ? (
