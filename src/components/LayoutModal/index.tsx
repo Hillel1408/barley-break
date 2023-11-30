@@ -5,7 +5,7 @@ const LayoutModal = ({ children, closeModal, active, className }: LayoutModalPro
     return (
         <div
             className={classNames(
-                "fixed top-0 w-full h-full bg-[rgba(0,0,0,0.70)] overflow-auto z-20",
+                "fixed top-0 w-full h-full bg-[rgba(0,0,0,0.70)] overflow-auto duration-200 z-20",
                 active ? "visible opacity-100" : "invisible opacity-0",
             )}
             onClick={() => {
