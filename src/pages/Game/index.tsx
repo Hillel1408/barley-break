@@ -3,7 +3,7 @@ import { SecondaryButton, Button, ImageModal, FinishModal } from "components";
 import { useEffect, useState, useRef } from "react";
 
 function Game() {
-    let timer = "03:00";
+    let timer = "02:00";
 
     const [active, setActive] = useState(false);
     const [activeModal, setActiveModal] = useState(false);
@@ -34,8 +34,8 @@ function Game() {
     const isWin = () => {
         let count = 1;
 
-        arr?.map((array, i) =>
-            array.map((item, j) => {
+        arr?.forEach((array, i) =>
+            array.forEach((item, j) => {
                 if (item === count && count !== length) count++;
             }),
         );
@@ -44,8 +44,8 @@ function Game() {
     };
 
     const correctArr = (i: number, j: number) => {
-        arr?.map((array, e) =>
-            array.map((item, k) => {
+        arr?.forEach((array, e) =>
+            array.forEach((item, k) => {
                 if (
                     item === number.current &&
                     ((Math.abs(j - k) === 1 && e === i) || (Math.abs(e - i) === 1 && j === k))
@@ -117,7 +117,7 @@ function Game() {
                                             "w-[268px] h-[268px] border-[0.5px] border-[#000]",
                                         )}
                                         onClick={() => {
-                                            correctArr(i, j);
+                                            !win && timer !== "00:00" && correctArr(i, j);
                                         }}
                                     >
                                         {(item !== number.current || win) && (
