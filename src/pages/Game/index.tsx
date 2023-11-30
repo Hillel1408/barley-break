@@ -1,15 +1,19 @@
 import classNames from "classnames";
 import { SecondaryButton, Button, ImageModal, FinishModal } from "components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function Game() {
-    const win = false;
     let timer = "03:00";
 
     const [active, setActive] = useState(false);
     const [activeModal, setActiveModal] = useState(false);
+    const [win, setWin] = useState(false);
+
+    const [arr, setArr] = useState<number[][]>();
 
     const length = 6;
+
+    const number = useRef(Math.floor(1 + Math.random() * (length + 1 - 1)));
 
     const chunkArray = (arr: number[], cnt: number) =>
         arr.reduce(
@@ -23,8 +27,40 @@ function Game() {
         const result = [...Array(length)].map(
             () => values.splice(Math.floor(Math.random() * values.length), 1)[0],
         );
+
         return chunkArray(result, 3);
     };
+
+    const isWin = () => {
+        let count = 1;
+
+        arr?.map((array, i) =>
+            array.map((item, j) => {
+                if (item === count && count !== length) count++;
+            }),
+        );
+
+        count === length && setWin(true);
+    };
+
+    const correctArr = (i: number, j: number) => {
+        arr?.map((array, e) =>
+            array.map((item, k) => {
+                if (
+                    item === number.current &&
+                    ((Math.abs(j - k) === 1 && e === i) || (Math.abs(e - i) === 1 && j === k))
+                ) {
+                    [arr[i][j], arr[e][k]] = [arr[e][k], arr[i][j]];
+                    setArr([...arr]);
+                }
+            }),
+        );
+        isWin();
+    };
+
+    useEffect(() => {
+        setArr(generateArray(length));
+    }, []);
 
     return (
         <>
@@ -69,19 +105,27 @@ function Game() {
                     <div
                         className={classNames(
                             "grid grid-cols-[1fr_1fr_1fr] mb-[226px] border-[0.5px] border-[#000]",
-                            win && "border-8 border-[#00B23C] rounded-[6px]",
+                            win && "outline outline-8 outline-[#00B23C] rounded-[4px]",
                         )}
                     >
-                        {generateArray(length).map((arr) =>
-                            arr.map((item) => (
-                                <div
-                                    key={item}
-                                    className="w-[268px] h-[268px] border-[0.5px] border-[#000]"
-                                >
-                                    <img src={`/images/1/3x2/${item}.jpeg`} alt="" />
-                                </div>
-                            )),
-                        )}
+                        {arr &&
+                            arr.map((array, i) =>
+                                array.map((item, j) => (
+                                    <div
+                                        key={item}
+                                        className={classNames(
+                                            "w-[268px] h-[268px] border-[0.5px] border-[#000]",
+                                        )}
+                                        onClick={() => {
+                                            correctArr(i, j);
+                                        }}
+                                    >
+                                        {(item !== number.current || win) && (
+                                            <img src={`/images/1/3x2/${item}.jpeg`} alt="" />
+                                        )}
+                                    </div>
+                                )),
+                            )}
                     </div>
 
                     {win ? (
