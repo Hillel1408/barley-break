@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { SecondaryButton, Button, ImageModal, FinishModal, MyTimer } from "components";
+import { SecondaryButton, Button, ImageModal, FinishModal } from "components";
 import { useEffect, useState, useRef } from "react";
 import { useTimer } from "react-timer-hook";
 
