@@ -62,6 +62,7 @@ function Login() {
                             aria-hidden="true"
                             onClick={() => {
                                 setValue((prev) => prev.slice(0, -1));
+                                error && setError("");
                             }}
                         >
                             <use xlinkHref="/sprites/sprite.svg#delete"></use>

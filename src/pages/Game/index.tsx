@@ -18,7 +18,7 @@ function Game() {
 
     const [arr, setArr] = useState<number[][]>([[]]);
 
-    const length = 6;
+    const length = 9;
 
     const number = useRef(Math.floor(1 + Math.random() * (length + 1 - 1)));
 
@@ -133,7 +133,7 @@ function Game() {
                                         }}
                                     >
                                         {(item !== number.current || win) && (
-                                            <img src={`/images/1/3x2/${item}.jpeg`} alt="" />
+                                            <img src={`/images/1/3x3/${item}.jpeg`} alt="" />
                                         )}
                                     </div>
                                 )),

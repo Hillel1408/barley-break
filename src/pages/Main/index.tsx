@@ -16,7 +16,7 @@ function Main() {
                     navigate(ROUTES.LOGIN);
                 }}
             >
-                <video autoPlay loop muted className="relative z-10">
+                <video autoPlay loop muted playsInline className="relative z-10">
                     <source src="/video/VID_20231201_122949_907.mp4" type="video/mp4" />
                 </video>
 
