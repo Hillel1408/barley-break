@@ -6,7 +6,8 @@ import axios from "http/axios";
 function Login() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const success = false;
+
+    const [user, setUser] = useState({ name: "" });
 
     const [active, setActive] = useState(false);
     const [value, setValue] = useState("");
@@ -23,6 +24,8 @@ function Login() {
                         day: date,
                         hash: "#7aSJ!n67%8912sS",
                     });
+
+                    setUser(response.data.data);
                 } catch (e: any) {
                     setError(e.response?.data?.message);
                 } finally {
@@ -50,7 +53,7 @@ function Login() {
                             value={value}
                             className={classNames(
                                 "w-[640px] h-[160px] rounded-[32px] border-2 text-[#000] text-[96px] font-bold text-center",
-                                success ? "border-[#000]" : "border-[#F54D0D]",
+                                value.length < 6 ? "border-[#F54D0D]" : "border-[#000]",
                             )}
                         />
 
@@ -112,24 +115,20 @@ function Login() {
                             </span>
                         </div>
                     ) : (
-                        <div className="mt-[230px] flex flex-col gap-[52px] items-center">
-                            <Button
-                                text="НАЧАТЬ"
-                                disabled={!success}
-                                className="w-[640px] bg-[#00B23C]"
-                            />
+                        <div className="mt-[60px] flex flex-col gap-[20px] items-center">
+                            <Button text="СЛОЖНАЯ ИГРА" className="w-[640px] bg-[#00B23C]" />
 
-                            {success ? (
-                                <p className="text-[#000] text-[32px] font-bold text-center">
-                                    Ну что, %username%, начнем игру? У вас будет 3 минуты, чтобы
-                                    собрать картинку из фрагментов
-                                </p>
-                            ) : (
-                                <p className="text-[#F40A0A] text-[32px] font-bold text-center">
-                                    %username%, вам уже начислены баллы за эту игру. За повторное
-                                    участие баллы не начисляются
-                                </p>
-                            )}
+                            <Button text="ПРОСТАЯ ИГРА" className="w-[640px] bg-[#00B23C]" />
+
+                            <p className="text-[#000] text-[32px] font-bold text-center -mx-[100px] mt-[32px]">
+                                Выберите уровень сложности игры, {user.name}. У вас будет 3 минуты,
+                                чтобы собрать картинку из фрагментов
+                            </p>
+
+                            {/* <p className="text-[#F40A0A] text-[32px] font-bold text-center">
+                                %username%, вам уже начислены баллы за эту игру. За повторное
+                                участие баллы не начисляются
+                            </p> */}
                         </div>
                     )}
                 </div>
