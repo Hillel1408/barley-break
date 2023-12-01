@@ -11,14 +11,16 @@ function Main() {
             </div>
 
             <div
-                className="relative min-h-[1597px] cursor-pointer"
+                className="relative min-h-[1597px] cursor-pointer rounded-t-[100px] overflow-hidden"
                 onClick={() => {
                     navigate(ROUTES.LOGIN);
                 }}
             >
-                <img src="/images/img-1.png" alt="" />
+                <video autoPlay loop muted>
+                    <source src="/video/VID_20231201_122949_907.mp4" type="video/mp4" />
+                </video>
 
-                <div className="absolute bottom-[158px] left-0 right-0 text-center flex flex-col gap-[70px] items-center">
+                <div className="absolute bottom-[158px] left-0 right-0 text-center flex flex-col gap-[70px] items-center z-10">
                     <svg className="h-[210px] w-[177px]" aria-hidden="true">
                         <use xlinkHref="/sprites/sprite.svg#hand"></use>
                     </svg>
@@ -27,6 +29,14 @@ function Main() {
                         Коснитесь экрана, <br /> чтобы начать игру
                     </span>
                 </div>
+
+                <div
+                    className="absolute h-full w-full top-0"
+                    style={{
+                        background:
+                            "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.70) 63.37%)",
+                    }}
+                ></div>
             </div>
         </div>
     );
