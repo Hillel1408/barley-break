@@ -16,11 +16,11 @@ function Main() {
                     navigate(ROUTES.LOGIN);
                 }}
             >
-                <video autoPlay loop muted>
+                <video autoPlay loop muted className="relative z-10">
                     <source src="/video/VID_20231201_122949_907.mp4" type="video/mp4" />
                 </video>
 
-                <div className="absolute bottom-[158px] left-0 right-0 text-center flex flex-col gap-[70px] items-center z-10">
+                <div className="absolute bottom-[158px] left-0 right-0 text-center flex flex-col gap-[70px] items-center z-30">
                     <svg className="h-[210px] w-[177px]" aria-hidden="true">
                         <use xlinkHref="/sprites/sprite.svg#hand"></use>
                     </svg>
@@ -31,7 +31,7 @@ function Main() {
                 </div>
 
                 <div
-                    className="absolute h-full w-full top-0"
+                    className="absolute h-full w-full top-0 z-20"
                     style={{
                         background:
                             "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.70) 63.37%)",
