@@ -9,7 +9,7 @@ function Game() {
     const [activeModal, setActiveModal] = useState(false);
     const [win, setWin] = useState(false);
 
-    const [arr, setArr] = useState<number[][]>();
+    const [arr, setArr] = useState<number[][]>([[]]);
 
     const length = 6;
 
@@ -32,15 +32,11 @@ function Game() {
     };
 
     const isWin = () => {
-        let count = 1;
+        const array = arr.reduce(function (flat, current) {
+            return flat.concat(current);
+        }, []);
 
-        arr?.forEach((array, i) =>
-            array.forEach((item, j) => {
-                if (item === count && count !== length) count++;
-            }),
-        );
-
-        count === length && setWin(true);
+        return array.toString() === array.slice().sort().toString();
     };
 
     const correctArr = (i: number, j: number) => {
@@ -55,7 +51,7 @@ function Game() {
                 }
             }),
         );
-        isWin();
+        isWin() && setWin(true);
     };
 
     useEffect(() => {
