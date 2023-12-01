@@ -1,15 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/";
-import { useEffect, useRef } from "react";
 
 function Main() {
     const navigate = useNavigate();
-
-    const videRef = useRef<HTMLVideoElement>(null);
-
-    useEffect(() => {
-        videRef?.current?.play();
-    }, []);
 
     return (
         <div className="container">
@@ -23,7 +16,7 @@ function Main() {
                     navigate(ROUTES.LOGIN);
                 }}
             >
-                <video ref={videRef} loop muted className="relative z-10">
+                <video autoPlay loop muted playsInline className="relative z-10">
                     <source src="/video/VID_20231201_122949_907.mp4" type="video/mp4" />
                 </video>
 
