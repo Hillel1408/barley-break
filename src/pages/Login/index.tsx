@@ -7,7 +7,7 @@ function Login() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const [user, setUser] = useState({ name: "" });
+    const [user, setUser] = useState({ name: "", played_before: [""] });
 
     const [active, setActive] = useState(false);
     const [value, setValue] = useState("");
@@ -116,19 +116,32 @@ function Login() {
                         </div>
                     ) : (
                         <div className="mt-[60px] flex flex-col gap-[20px] items-center">
-                            <Button text="СЛОЖНАЯ ИГРА" className="w-[640px] bg-[#00B23C]" />
+                            <Button
+                                text="СЛОЖНАЯ ИГРА"
+                                className="w-[640px] bg-[#00B23C]"
+                                disabled={user.played_before.includes("puzzle_3x3")}
+                            />
 
-                            <Button text="ПРОСТАЯ ИГРА" className="w-[640px] bg-[#00B23C]" />
+                            <Button
+                                text="ПРОСТАЯ ИГРА"
+                                className="w-[640px] bg-[#00B23C]"
+                                disabled={user.played_before.includes("puzzle_3x2")}
+                            />
 
-                            <p className="text-[#000] text-[32px] font-bold text-center -mx-[100px] mt-[32px]">
-                                Выберите уровень сложности игры, {user.name}. У вас будет 3 минуты,
-                                чтобы собрать картинку из фрагментов
+                            <p
+                                className={classNames(
+                                    "text-[32px] font-bold text-center -mx-[100px] mt-[32px]",
+                                    user.played_before.length === 2
+                                        ? "text-[#F40A0A]"
+                                        : "text-[#000]",
+                                )}
+                            >
+                                {user.played_before.length === 0 &&
+                                    `Выберите уровень сложности игры, ${user.name}. У вас будет 3 минуты, чтобы собрать картинку из фрагментов`}
+
+                                {user.played_before.length === 1 &&
+                                    `${user.name}, вы уже прошли одну из игр. Теперь вы можете заработать дополнительные баллы, сыграв во вторую.`}
                             </p>
-
-                            {/* <p className="text-[#F40A0A] text-[32px] font-bold text-center">
-                                %username%, вам уже начислены баллы за эту игру. За повторное
-                                участие баллы не начисляются
-                            </p> */}
                         </div>
                     )}
                 </div>
