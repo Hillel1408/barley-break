@@ -4,9 +4,12 @@ import { useEffect, useState, useRef } from "react";
 import { useTimer } from "react-timer-hook";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/";
+import { useAppSelector } from "hook";
 
 function Game() {
     const navigate = useNavigate();
+
+    const userData = useAppSelector((state) => state.main.userData);
 
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 180);
@@ -22,9 +25,7 @@ function Game() {
 
     const [arr, setArr] = useState<number[][]>([[]]);
 
-    const difficulty = "puzzle_3x3";
-
-    const length = 9;
+    const length = +(userData.id === "puzzle_3x3" ? 9 : 6);
 
     const number = useRef(Math.floor(1 + Math.random() * (length + 1 - 1)));
 
@@ -94,7 +95,7 @@ function Game() {
                         <h1
                             className={classNames(
                                 "text-[80px] font-bold",
-                                difficulty === "puzzle_3x3" ? "mb-[235px]" : "mb-[329px]",
+                                userData.id === "puzzle_3x3" ? "mb-[235px]" : "mb-[329px]",
                                 win
                                     ? "text-[#00B23C]"
                                     : seconds === 0 && minutes === 0
@@ -143,7 +144,7 @@ function Game() {
                                     >
                                         {(item !== number.current || win) && (
                                             <img
-                                                src={`/images/${image.current}/${difficulty}/${item}.jpeg`}
+                                                src={`/images/${image.current}/${userData.id}/${item}.jpeg`}
                                                 alt=""
                                             />
                                         )}
@@ -196,7 +197,7 @@ function Game() {
                 active={active}
                 setActive={setActive}
                 image={image.current}
-                difficulty={difficulty}
+                difficulty={userData.id}
             />
 
             <FinishModal active={activeModal} setActive={setActiveModal} />

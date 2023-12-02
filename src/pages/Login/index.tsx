@@ -2,8 +2,14 @@ import classNames from "classnames";
 import { Button, QrModal, Logo } from "components";
 import { useEffect, useState } from "react";
 import axios from "http/axios";
+import { useAppDispatch } from "hook";
+import { setDataUser } from "store";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "constants/";
 
 function Login() {
+    const navigate = useNavigate();
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -13,6 +19,8 @@ function Login() {
     const [value, setValue] = useState("");
 
     const date = new Date().toLocaleDateString("en-ca");
+
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         value.length === 6 &&
@@ -26,13 +34,14 @@ function Login() {
                     });
 
                     setUser(response.data.data);
+                    dispatch(setDataUser({ user_id: value }));
                 } catch (e: any) {
                     setError(e.response?.data?.message);
                 } finally {
                     setLoading(false);
                 }
             })();
-    }, [value, date]);
+    }, [value, date, dispatch]);
 
     return (
         <>
@@ -121,12 +130,20 @@ function Login() {
                                 text="СЛОЖНАЯ ИГРА"
                                 className="w-[640px] bg-[#00B23C]"
                                 disabled={user.played_before.includes("puzzle_3x3")}
+                                clickHandler={() => {
+                                    dispatch(setDataUser({ id: "puzzle_3x3" }));
+                                    navigate(ROUTES.GAME);
+                                }}
                             />
 
                             <Button
                                 text="ПРОСТАЯ ИГРА"
                                 className="w-[640px] bg-[#00B23C]"
                                 disabled={user.played_before.includes("puzzle_3x2")}
+                                clickHandler={() => {
+                                    dispatch(setDataUser({ id: "puzzle_3x2" }));
+                                    navigate(ROUTES.GAME);
+                                }}
                             />
 
                             <p
