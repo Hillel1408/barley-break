@@ -9,6 +9,7 @@ function App() {
                 <Route path={`${ROUTES.HOME}`} element={<Main />} />
                 <Route path={`${ROUTES.LOGIN}`} element={<Login />} />
                 <Route path={`${ROUTES.GAME}`} element={<Game />} />
+                <Route path="*" element={<Main />} />
             </Routes>
         </Router>
     );

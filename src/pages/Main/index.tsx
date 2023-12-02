@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "constants/";
 import { Logo } from "components";
+import { ROUTES } from "constants/";
 
 function Main() {
     const navigate = useNavigate();

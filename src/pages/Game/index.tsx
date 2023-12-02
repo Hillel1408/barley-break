@@ -11,6 +11,8 @@ function Game() {
 
     const userData = useAppSelector((state) => state.main.userData);
 
+    !userData.user_id && navigate(ROUTES.HOME);
+
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 180);
 

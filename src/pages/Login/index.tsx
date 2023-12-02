@@ -1,14 +1,14 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { Button, QrModal, Logo } from "components";
-import { useEffect, useState } from "react";
 import axios from "http/axios";
 import { useAppDispatch } from "hook";
 import { setDataUser } from "store";
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/";
 
 function Login() {
-    const navigate = useNavigate();
+    const [value, setValue] = useState("");
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -16,10 +16,10 @@ function Login() {
     const [user, setUser] = useState({ name: "", played_before: [""] });
 
     const [active, setActive] = useState(false);
-    const [value, setValue] = useState("");
 
     const date = new Date().toLocaleDateString("en-ca");
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -30,7 +30,7 @@ function Login() {
                     const response = await axios.post("/v1/transactions/third-party-check", {
                         user_id: value,
                         day: date,
-                        hash: "#7aSJ!n67%8912sS",
+                        hash: `${process.env.REACT_APP_HASH}`,
                     });
 
                     setUser(response.data.data);
