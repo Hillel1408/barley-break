@@ -4,9 +4,13 @@ import { LayoutModal, Button } from "components";
 const ImageModal = ({
     active,
     setActive,
+    image,
+    difficulty,
 }: {
     active: boolean;
     setActive: (a: boolean) => void;
+    image: number;
+    difficulty: string;
 }) => {
     active && document.body.classList.add("lock");
 
@@ -19,7 +23,7 @@ const ImageModal = ({
             active={active}
         >
             <div className="flex flex-col gap-[63px]">
-                <img src="/images/1/3x2/full.jpeg" alt="" />
+                <img src={`/images/${image}/${difficulty}/full.jpeg`} alt="" />
 
                 <Button
                     text="ПОНЯТНО"

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/";
+import { Logo } from "components";
 
 function Main() {
     const navigate = useNavigate();
@@ -7,7 +8,7 @@ function Main() {
     return (
         <div className="container">
             <div className="py-[73px]">
-                <img src="/images/logo.svg" alt="" />
+                <Logo />
             </div>
 
             <div

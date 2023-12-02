@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { SecondaryButton, Button, ImageModal, FinishModal } from "components";
+import { SecondaryButton, Button, ImageModal, FinishModal, Logo } from "components";
 import { useEffect, useState, useRef } from "react";
 import { useTimer } from "react-timer-hook";
 
@@ -18,9 +18,13 @@ function Game() {
 
     const [arr, setArr] = useState<number[][]>([[]]);
 
+    const difficulty = "puzzle_3x3";
+
     const length = 9;
 
     const number = useRef(Math.floor(1 + Math.random() * (length + 1 - 1)));
+
+    const image = useRef(Math.floor(1 + Math.random() * (5 + 1 - 1)));
 
     const chunkArray = (arr: number[], cnt: number) =>
         arr.reduce(
@@ -72,7 +76,7 @@ function Game() {
         <>
             <div className="container">
                 <div className="py-[73px] flex justify-between items-center">
-                    <img src="/images/logo.svg" alt="" />
+                    <Logo />
 
                     {!win && (
                         <div className="bg-[#F54D0D] text-white text-[80px] font-bold px-6">
@@ -85,7 +89,8 @@ function Game() {
                     <div className="relative w-full text-center">
                         <h1
                             className={classNames(
-                                "text-[80px] font-bold mb-[329px]",
+                                "text-[80px] font-bold",
+                                difficulty === "puzzle_3x3" ? "mb-[235px]" : "mb-[329px]",
                                 win
                                     ? "text-[#00B23C]"
                                     : seconds === 0 && minutes === 0
@@ -133,7 +138,10 @@ function Game() {
                                         }}
                                     >
                                         {(item !== number.current || win) && (
-                                            <img src={`/images/1/3x3/${item}.jpeg`} alt="" />
+                                            <img
+                                                src={`/images/${image.current}/${difficulty}/${item}.jpeg`}
+                                                alt=""
+                                            />
                                         )}
                                     </div>
                                 )),
@@ -174,7 +182,12 @@ function Game() {
                 </div>
             </div>
 
-            <ImageModal active={active} setActive={setActive} />
+            <ImageModal
+                active={active}
+                setActive={setActive}
+                image={image.current}
+                difficulty={difficulty}
+            />
 
             <FinishModal active={activeModal} setActive={setActiveModal} />
         </>

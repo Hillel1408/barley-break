@@ -29,7 +29,7 @@ const FinishModal = ({
                     text="ЗАВЕРШИТЬ ИГРУ"
                     className="bg-[#F40A0A] w-full"
                     clickHandler={() => {
-                        navigate(ROUTES.LOGIN);
+                        navigate(ROUTES.HOME);
                         document.body.classList.remove("lock");
                     }}
                 />

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Button, QrModal } from "components";
+import { Button, QrModal, Logo } from "components";
 import { useEffect, useState } from "react";
 import axios from "http/axios";
 
@@ -38,7 +38,7 @@ function Login() {
         <>
             <div className="container">
                 <div className="py-[73px]">
-                    <img src="/images/logo.svg" alt="" />
+                    <Logo />
                 </div>
 
                 <div className="bg-white rounded-t-[100px] pt-[421px] pb-[96px] px-[220px] flex flex-col items-center gap-[10px] min-h-[1597px]">
