@@ -2,8 +2,12 @@ import classNames from "classnames";
 import { SecondaryButton, Button, ImageModal, FinishModal, Logo } from "components";
 import { useEffect, useState, useRef } from "react";
 import { useTimer } from "react-timer-hook";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "constants/";
 
 function Game() {
+    const navigate = useNavigate();
+
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 180);
 
@@ -151,7 +155,13 @@ function Game() {
                     {win ? (
                         <Button text="ПОЛУЧИТЬ КУПОНЫ" className="w-[802px] bg-[#00B23C]" />
                     ) : seconds === 0 && minutes === 0 ? (
-                        <Button text="ЗАВЕРШИТЬ ИГРУ" className="w-[802px] bg-[#F40A0A]" />
+                        <Button
+                            text="ЗАВЕРШИТЬ ИГРУ"
+                            className="w-[802px] bg-[#F40A0A]"
+                            clickHandler={() => {
+                                navigate(ROUTES.HOME);
+                            }}
+                        />
                     ) : (
                         <div className="flex justify-between w-full">
                             <SecondaryButton
