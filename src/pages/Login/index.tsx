@@ -32,7 +32,7 @@ function Login() {
                     });
 
                     setUser(response.data.data);
-                    dispatch(setDataUser({ user_id: value }));
+                    dispatch(setDataUser({ user_id: value, name: response.data.data.name }));
                 } catch (e: any) {
                     setError(e.response?.data?.message);
                 } finally {

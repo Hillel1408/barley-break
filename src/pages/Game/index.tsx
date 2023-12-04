@@ -93,7 +93,7 @@ function Game() {
 
                                 <p className="absolute top-[130px] text-[36px] text-[#000] font-bold left-0 right-0">
                                     {win
-                                        ? "Поздравляем, %username%! Вы верно собрали картинку"
+                                        ? `Поздравляем, ${userData.name}! Вы верно собрали картинку`
                                         : seconds === 0 &&
                                           minutes === 0 &&
                                           "В следующий раз, попробуйте действовать быстрее"}
