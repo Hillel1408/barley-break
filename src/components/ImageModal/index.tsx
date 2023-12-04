@@ -23,7 +23,7 @@ const ImageModal = ({
             active={active}
         >
             <div className="flex flex-col gap-[63px]">
-                <img src={`/images/${image}/${difficulty}/full.jpeg`} alt="" />
+                <img src={`/images/${image}/${difficulty}/full.webp`} alt="" />
 
                 <Button
                     text="ПОНЯТНО"
