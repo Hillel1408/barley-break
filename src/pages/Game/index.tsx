@@ -65,7 +65,7 @@ function Game() {
                             <Logo />
 
                             {!win && (
-                                <div className="bg-[#F54D0D] text-white text-[80px] font-bold px-6">
+                                <div className="bg-[#F54D0D] text-white text-[80px] font-bold w-[276px] text-center">
                                     {formatTime(minutes)}:{formatTime(seconds)}
                                 </div>
                             )}
