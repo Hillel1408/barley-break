@@ -48,6 +48,10 @@ function Game() {
         }
     };
 
+    const formatTime = (time: number) => {
+        return String(time).padStart(2, "0");
+    };
+
     useEffect(() => {
         setArr(generateArray(length));
     }, [length]);
@@ -62,7 +66,7 @@ function Game() {
 
                             {!win && (
                                 <div className="bg-[#F54D0D] text-white text-[80px] font-bold px-6">
-                                    {minutes}:{seconds}
+                                    {formatTime(minutes)}:{formatTime(seconds)}
                                 </div>
                             )}
                         </div>
