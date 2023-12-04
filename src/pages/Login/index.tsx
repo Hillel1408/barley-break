@@ -17,8 +17,6 @@ function Login() {
 
     const [active, setActive] = useState(false);
 
-    const date = new Date().toLocaleDateString("en-ca");
-
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -29,7 +27,7 @@ function Login() {
                     setLoading(true);
                     const response = await axios.post("/v1/transactions/third-party-check", {
                         user_id: value,
-                        day: date,
+                        day: new Date().toLocaleDateString("en-ca"),
                         hash: `${process.env.REACT_APP_HASH}`,
                     });
 
@@ -41,7 +39,7 @@ function Login() {
                     setLoading(false);
                 }
             })();
-    }, [value, date, dispatch]);
+    }, [value, dispatch]);
 
     return (
         <>

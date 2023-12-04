@@ -1,10 +1,12 @@
+import { useEffect, useState, useRef } from "react";
 import classNames from "classnames";
 import { SecondaryButton, Button, ImageModal, FinishModal, Logo } from "components";
-import { useEffect, useState, useRef } from "react";
 import { useTimer } from "react-timer-hook";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/";
 import { useAppSelector } from "hook";
+import axios from "http/axios";
+import { correctArr, generateArray, isWin } from "pages/Game/helpers";
 
 function Game() {
     const navigate = useNavigate();
@@ -27,55 +29,26 @@ function Game() {
 
     const length = +(userData.id === "puzzle_3x3" ? 9 : 6);
 
-    const number = useRef(Math.floor(1 + Math.random() * (length + 1 - 1)));
+    const number = useRef(Math.floor(1 + Math.random() * length)); //часть картинки которую пропускаем
 
-    const image = useRef(Math.floor(1 + Math.random() * (5 + 1 - 1)));
+    const image = useRef(Math.floor(1 + Math.random() * 5)); //рандомная картинка
 
-    const chunkArray = (arr: number[], cnt: number) =>
-        arr.reduce(
-            (prev: number[][], cur: number, i: number, a: number[]) =>
-                !(i % cnt) ? prev.concat([a.slice(i, i + cnt)]) : prev,
-            [],
-        );
-
-    const generateArray = (length: number) => {
-        const values = [...Array(length)].map((_, i) => i + 1);
-        const result = [...Array(length)].map(
-            () => values.splice(Math.floor(Math.random() * values.length), 1)[0],
-        );
-
-        return chunkArray(result, 3);
-    };
-
-    const isWin = () => {
-        const array = arr.reduce(function (flat, current) {
-            return flat.concat(current);
-        }, []);
-
-        return array.toString() === array.slice().sort().toString();
-    };
-
-    const correctArr = (i: number, j: number) => {
-        arr?.forEach((array, e) =>
-            array.forEach((item, k) => {
-                if (
-                    item === number.current &&
-                    ((Math.abs(j - k) === 1 && e === i) || (Math.abs(e - i) === 1 && j === k))
-                ) {
-                    [arr[i][j], arr[e][k]] = [arr[e][k], arr[i][j]];
-                    setArr([...arr]);
-                }
-            }),
-        );
-        if (isWin()) {
-            pause();
-            setWin(true);
+    const getCoupons = async () => {
+        try {
+            const response = await axios.post("/v1/transactions/third-party", {
+                id: userData.id,
+                day: new Date().toLocaleDateString("en-ca"),
+                user_id: userData.user_id,
+                hash: `${process.env.REACT_APP_HASH}`,
+            });
+        } catch (e: any) {
+            console.log(e.response?.data?.message);
         }
     };
 
     useEffect(() => {
         setArr(generateArray(length));
-    }, []);
+    }, [length]);
 
     return (
         <>
@@ -139,9 +112,21 @@ function Game() {
                                                     "w-[268px] h-[268px] border-[0.5px] border-[#000]",
                                                 )}
                                                 onClick={() => {
-                                                    !win &&
-                                                        !(seconds === 0 && minutes === 0) &&
-                                                        correctArr(i, j);
+                                                    if (!win && !(seconds === 0 && minutes === 0)) {
+                                                        correctArr(
+                                                            i,
+                                                            j,
+                                                            arr,
+                                                            number.current,
+                                                            setArr,
+                                                        );
+
+                                                        if (isWin(arr)) {
+                                                            pause();
+                                                            setWin(true);
+                                                            getCoupons();
+                                                        }
+                                                    }
                                                 }}
                                             >
                                                 {(item !== number.current || win) && (
@@ -156,7 +141,13 @@ function Game() {
                             </div>
 
                             {win ? (
-                                <Button text="ПОЛУЧИТЬ КУПОНЫ" className="w-[802px] bg-[#00B23C]" />
+                                <Button
+                                    text="ПОЛУЧИТЬ КУПОНЫ"
+                                    className="w-[802px] bg-[#00B23C]"
+                                    clickHandler={() => {
+                                        navigate(ROUTES.HOME);
+                                    }}
+                                />
                             ) : seconds === 0 && minutes === 0 ? (
                                 <Button
                                     text="ЗАВЕРШИТЬ ИГРУ"
