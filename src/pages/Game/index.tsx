@@ -1,6 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import classNames from "classnames";
-import { SecondaryButton, Button, ImageModal, FinishModal, Logo } from "components";
+import {
+    SecondaryButton,
+    Button,
+    ImageModal,
+    FinishModal,
+    Logo,
+    IdleTimerContainer,
+} from "components";
 import { useTimer } from "react-timer-hook";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/";
@@ -58,6 +65,8 @@ function Game() {
 
     return (
         <>
+            <IdleTimerContainer></IdleTimerContainer>
+
             {userData.user_id ? (
                 <div>
                     <div className="container">

@@ -5,5 +5,15 @@ import QrModal from "components/QrModal";
 import ImageModal from "components/ImageModal";
 import FinishModal from "components/FinishModal";
 import Logo from "components/Logo";
+import IdleTimerContainer from "components/IdleTimerContainer";
 
-export { Button, SecondaryButton, LayoutModal, QrModal, ImageModal, FinishModal, Logo };
+export {
+    Button,
+    SecondaryButton,
+    LayoutModal,
+    QrModal,
+    ImageModal,
+    FinishModal,
+    Logo,
+    IdleTimerContainer,
+};

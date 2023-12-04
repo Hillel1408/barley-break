@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
-import { Button, QrModal, Logo } from "components";
+import { Button, QrModal, Logo, IdleTimerContainer } from "components";
 import axios from "http/axios";
 import { useAppDispatch } from "hook";
 import { setDataUser } from "store";
@@ -43,6 +43,8 @@ function Login() {
 
     return (
         <>
+            <IdleTimerContainer></IdleTimerContainer>
+
             <div className="container">
                 <div className="py-[73px]">
                     <Logo />
