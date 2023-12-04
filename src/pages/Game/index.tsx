@@ -111,7 +111,7 @@ function Game() {
                                             <div
                                                 key={item}
                                                 className={classNames(
-                                                    "w-[268px] h-[268px] border-[0.5px] border-[#000]",
+                                                    "group w-[268px] h-[268px] border-[0.5px] border-[#000] relative",
                                                 )}
                                                 onClick={() => {
                                                     if (!win && !(seconds === 0 && minutes === 0)) {
@@ -137,6 +137,13 @@ function Game() {
                                                         alt=""
                                                     />
                                                 )}
+                                                <div
+                                                    className="absolute left-0 right-0 top-0 bottom-0 duration-100 opacity-0 group-active:opacity-100"
+                                                    style={{
+                                                        background:
+                                                            "linear-gradient(0deg, rgba(141, 27, 255, 0.50) 0%, rgba(141, 27, 255, 0.50) 100%)",
+                                                    }}
+                                                ></div>
                                             </div>
                                         )),
                                     )}
