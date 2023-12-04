@@ -138,7 +138,11 @@ function Game() {
                                                     />
                                                 )}
                                                 <div
-                                                    className="absolute left-0 right-0 top-0 bottom-0 duration-100 opacity-0 group-active:opacity-100"
+                                                    className={classNames(
+                                                        "absolute left-0 right-0 top-0 bottom-0 duration-100 opacity-0",
+                                                        !(seconds === 0 && minutes === 0) &&
+                                                            "group-active:opacity-100",
+                                                    )}
                                                     style={{
                                                         background:
                                                             "linear-gradient(0deg, rgba(141, 27, 255, 0.50) 0%, rgba(141, 27, 255, 0.50) 100%)",
