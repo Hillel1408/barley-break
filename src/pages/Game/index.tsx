@@ -31,7 +31,9 @@ function Game() {
 
     const number = useRef(Math.floor(1 + Math.random() * length)); //часть картинки которую пропускаем
 
-    const image = useRef(Math.floor(1 + Math.random() * 5)); //рандомная картинка
+    const image = useRef(Math.floor(1 + Math.random() * 4)); //рандомная картинка
+
+    const division = ["Тарасова", "Чернышева", "Боброва", "Харламова"];
 
     const getCoupons = async () => {
         try {
@@ -96,7 +98,7 @@ function Game() {
 
                             <div
                                 className={classNames(
-                                    "grid grid-cols-[1fr_1fr_1fr] mb-[226px] border-[0.5px] border-[#000]",
+                                    "grid grid-cols-[1fr_1fr_1fr] mb-2 border-[0.5px] border-[#000]",
                                     win && "outline outline-8 outline-[#00B23C] rounded-[4px]",
                                     seconds === 0 &&
                                         minutes === 0 &&
@@ -139,6 +141,11 @@ function Game() {
                                         )),
                                     )}
                             </div>
+
+                            <p className="mb-[226px] text-[#000] text-[16px] font-bold text-center">
+                                Дивизион {division[image.current - 1]} Фонбет Неделя звезд хоккея
+                                2022. Мастер-шоу КХЛ <br /> 10 Декабря 2022 г. Челябинск, ЛА Трактор
+                            </p>
 
                             {win ? (
                                 <Button
