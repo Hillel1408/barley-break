@@ -148,10 +148,7 @@ function Login() {
 
                             <p
                                 className={classNames(
-                                    "text-[32px] font-bold text-center -mx-[100px] mt-[32px]",
-                                    user.played_before.length === 2
-                                        ? "text-[#F40A0A]"
-                                        : "text-[#000]",
+                                    "text-[32px] font-bold text-center -mx-[100px] mt-[32px] text-[#000]",
                                 )}
                             >
                                 {user.played_before.length === 0 &&
@@ -159,6 +156,9 @@ function Login() {
 
                                 {user.played_before.length === 1 &&
                                     `${user.name}, вы уже прошли одну из игр. Теперь вы можете заработать дополнительные баллы, сыграв во вторую.`}
+
+                                {user.played_before.length === 2 &&
+                                    `Молодец, ${user.name}! Вы прошли обе игры и получили за них максимальное количество купонов на сегодня`}
                             </p>
                         </div>
                     )}

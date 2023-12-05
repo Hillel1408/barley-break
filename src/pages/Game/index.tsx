@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import classNames from "classnames";
 import {
     SecondaryButton,
@@ -62,6 +62,34 @@ function Game() {
     useEffect(() => {
         setArr(generateArray(length));
     }, [length]);
+
+    const onClose = true;
+
+    const handleKeyDown = useCallback(
+        (event: KeyboardEvent) => {
+            if (event.key === "Escape" && onClose) {
+                length === 9
+                    ? setArr([
+                          [1, 2, 3],
+                          [3, 4, 5],
+                          [7, 8, 9],
+                      ])
+                    : setArr([
+                          [1, 2, 3],
+                          [3, 4, 5],
+                      ]);
+            }
+        },
+        [onClose],
+    );
+
+    useEffect(() => {
+        document.addEventListener<"keydown">("keydown", handleKeyDown, false);
+
+        return () => {
+            document.removeEventListener<"keydown">("keydown", handleKeyDown, false);
+        };
+    }, [handleKeyDown]);
 
     return (
         <>
