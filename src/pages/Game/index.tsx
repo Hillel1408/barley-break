@@ -146,7 +146,7 @@ function Game() {
                                             >
                                                 {(item !== number.current || win) && (
                                                     <img
-                                                        src={`/images/${image.current}/${userData.id}/${item}.jpeg`}
+                                                        src={`/images/${image.current}/${userData.id}/${item}.webp`}
                                                         alt=""
                                                     />
                                                 )}
