@@ -31,6 +31,8 @@ function Login() {
                         hash: `${process.env.REACT_APP_HASH}`,
                     });
 
+                    console.log(response);
+
                     setUser(response.data.data);
                     dispatch(setDataUser({ user_id: value, name: response.data.data.name }));
                 } catch (e: any) {
@@ -78,33 +80,34 @@ function Login() {
                         </svg>
                     </div>
 
-                    <span
-                        className="text-[#000] text-[32px] font-bold cursor-pointer"
-                        onClick={() => {
-                            setActive(true);
-                        }}
-                    >
-                        У меня пока нет ID
-                    </span>
-
                     {value.length < 6 ? (
-                        <div className="mt-[55px] grid grid-cols-[1fr_1fr_1fr] gap-9">
-                            {new Array(10).fill("").map((item, index) => (
-                                <button
-                                    key={index}
-                                    className={classNames(
-                                        "w-[160px] h-[160px] rounded-full border-2 border-[#8D1BFF] flex items-center justify-center text-[80px] font-bold text-[#000] duration-200 active:bg-[#70F] active:text-white cursor-pointer disabled:cursor-default disabled:active:text-[#000] disabled:active:bg-[white]",
-                                        index === 0 && "order-1 col-start-2",
-                                    )}
-                                    onClick={() => {
-                                        setValue((prev) => prev + index);
-                                    }}
-                                    disabled={value.length === 6}
-                                >
-                                    {index}
-                                </button>
-                            ))}
-                        </div>
+                        <>
+                            <span
+                                className="text-[#000] text-[32px] font-bold cursor-pointer"
+                                onClick={() => {
+                                    setActive(true);
+                                }}
+                            >
+                                У меня пока нет ID
+                            </span>
+                            <div className="mt-[55px] grid grid-cols-[1fr_1fr_1fr] gap-9">
+                                {new Array(10).fill("").map((item, index) => (
+                                    <button
+                                        key={index}
+                                        className={classNames(
+                                            "w-[160px] h-[160px] rounded-full border-2 border-[#8D1BFF] flex items-center justify-center text-[80px] font-bold text-[#000] duration-200 active:bg-[#70F] active:text-white cursor-pointer disabled:cursor-default disabled:active:text-[#000] disabled:active:bg-[white]",
+                                            index === 0 && "order-1 col-start-2",
+                                        )}
+                                        onClick={() => {
+                                            setValue((prev) => prev + index);
+                                        }}
+                                        disabled={value.length === 6}
+                                    >
+                                        {index}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
                     ) : loading ? (
                         <div className="mt-[230px] flex flex-col gap-8 items-center">
                             <svg className="h-[180px] w-[178px]" aria-hidden="true">
@@ -128,7 +131,7 @@ function Login() {
                         <div className="mt-[60px] flex flex-col gap-[20px] items-center">
                             <Button
                                 text="СЛОЖНАЯ ИГРА"
-                                className="w-[640px] bg-[#00B23C]"
+                                className="w-[640px] bg-[#00B23C] leading-[170px]"
                                 disabled={user.played_before.includes("puzzle_3x3")}
                                 clickHandler={() => {
                                     dispatch(setDataUser({ id: "puzzle_3x3" }));
