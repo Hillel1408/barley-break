@@ -15,7 +15,7 @@ const Button = ({
         <button
             disabled={disabled}
             className={classNames(
-                "h-[160px] rounded-[32px] text-white text-[64px] font-bold tracking-[1.28px] disabled:bg-[#95999C] leading-[170px]",
+                "h-[160px] rounded-[32px] text-white text-[64px] font-bold tracking-[1.28px] disabled:bg-[#95999C] leading-[165px]",
                 className,
             )}
             onClick={clickHandler}
