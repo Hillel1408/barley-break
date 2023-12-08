@@ -10,7 +10,7 @@ const Alert = () => {
 
     useEffect(() => {
         const timerId = setTimeout(() => {
-            dispatch(resetAlert());
+            alert.name === "Соединение восстановлено" && dispatch(resetAlert());
         }, 1500);
 
         return () => {
@@ -21,9 +21,9 @@ const Alert = () => {
     return alert.name ? (
         <div
             className={classNames(
-                "rounded-[4px] px-[10px] py-[15px] text-white z-10 fixed min-w-[250px] top-5 right-5 block",
+                "text-white z-20 fixed w-full top-0 h-20 flex items-center justify-center text-[32px] font-bold",
             )}
-            style={{ animation: "fade-in 350ms ease-in-out", backgroundColor: alert.color }}
+            style={{ backgroundColor: alert.color }}
         >
             {alert.name}
         </div>

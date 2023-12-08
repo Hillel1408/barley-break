@@ -10,10 +10,10 @@ function App() {
 
     useEffect(() => {
         window.addEventListener("online", () =>
-            dispatch(setAlert({ name: "Соединение восстановлено", color: "green" })),
+            dispatch(setAlert({ name: "Соединение восстановлено", color: "#00B23C" })),
         );
         window.addEventListener("offline", () =>
-            dispatch(setAlert({ name: "Соединение прервано", color: "red" })),
+            dispatch(setAlert({ name: "Соединение прервано", color: "#F40A0A" })),
         );
     }, []);
 
