@@ -1,8 +1,22 @@
+import { useEffect } from "react";
+import { useAppDispatch } from "hook";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ROUTES } from "constants/";
 import { Main, Login, Game } from "pages";
+import { setAlert } from "store";
 
 function App() {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        window.addEventListener("online", () =>
+            dispatch(setAlert({ name: "Соединение восстановлено", color: "green" })),
+        );
+        window.addEventListener("offline", () =>
+            dispatch(setAlert({ name: "Соединение прервано", color: "red" })),
+        );
+    }, []);
+
     return (
         <Router>
             <Routes>

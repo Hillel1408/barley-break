@@ -7,6 +7,7 @@ import {
     FinishModal,
     Logo,
     IdleTimerContainer,
+    Alert,
 } from "components";
 import { useTimer } from "react-timer-hook";
 import { useNavigate } from "react-router-dom";
@@ -257,6 +258,8 @@ function Game() {
             ) : (
                 navigate(ROUTES.HOME)
             )}
+
+            <Alert />
         </>
     );
 }
