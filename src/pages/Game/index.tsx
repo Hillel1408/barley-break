@@ -195,7 +195,11 @@ function Game() {
                                     )}
                             </div>
 
-                            <p className="mb-[226px] text-[#000] text-[16px] font-bold text-center">
+                            <p
+                                className={classNames(
+                                    "text-[#000] text-[16px] font-bold text-center",
+                                )}
+                            >
                                 Дивизион {division[image.current - 1]} Фонбет Неделя звезд хоккея
                                 2022. Мастер-шоу КХЛ <br /> 10 Декабря 2022 г. Челябинск, ЛА Трактор
                             </p>
@@ -203,7 +207,10 @@ function Game() {
                             {win ? (
                                 <Button
                                     text="ПОЛУЧИТЬ КУПОНЫ"
-                                    className="w-[802px] bg-[#00B23C]"
+                                    className={classNames(
+                                        "w-[802px] bg-[#00B23C]",
+                                        userData.id === "puzzle_3x2" ? "mt-[202px]" : "mt-[20px]",
+                                    )}
                                     clickHandler={() => {
                                         navigate(ROUTES.HOME);
                                     }}
@@ -211,13 +218,21 @@ function Game() {
                             ) : seconds === 0 && minutes === 0 ? (
                                 <Button
                                     text="ЗАВЕРШИТЬ ИГРУ"
-                                    className="w-[802px] bg-[#F40A0A]"
+                                    className={classNames(
+                                        "w-[802px] bg-[#F40A0A]",
+                                        userData.id === "puzzle_3x2" ? "mt-[202px]" : "mt-[20px]",
+                                    )}
                                     clickHandler={() => {
                                         navigate(ROUTES.HOME);
                                     }}
                                 />
                             ) : (
-                                <div className="flex justify-between w-full">
+                                <div
+                                    className={classNames(
+                                        "flex justify-between w-full",
+                                        userData.id === "puzzle_3x2" ? "mt-[226px]" : "mt-[60px]",
+                                    )}
+                                >
                                     <SecondaryButton
                                         text="Смотреть подсказку"
                                         className="text-[#8D1BFF]"
