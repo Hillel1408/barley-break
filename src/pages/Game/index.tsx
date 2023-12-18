@@ -175,7 +175,7 @@ function Game() {
                                             >
                                                 {(item !== number.current || win) && (
                                                     <img
-                                                        src={`/images/${image.current}/${userData.id}/${item}.webp`}
+                                                        src={`/images/${image.current}/${userData.id}/${item}.jpeg`}
                                                         alt=""
                                                     />
                                                 )}
@@ -195,14 +195,17 @@ function Game() {
                                     )}
                             </div>
 
-                            <p
-                                className={classNames(
-                                    "text-[#000] text-[16px] font-bold text-center",
-                                )}
-                            >
-                                Дивизион {division[image.current - 1]} Фонбет Неделя звезд хоккея
-                                2022. Мастер-шоу КХЛ <br /> 10 Декабря 2022 г. Челябинск, ЛА Трактор
-                            </p>
+                            {false && (
+                                <p
+                                    className={classNames(
+                                        "text-[#000] text-[16px] font-bold text-center",
+                                    )}
+                                >
+                                    Дивизион {division[image.current - 1]} Фонбет Неделя звезд
+                                    хоккея 2022. Мастер-шоу КХЛ <br /> 10 Декабря 2022 г. Челябинск,
+                                    ЛА Трактор
+                                </p>
+                            )}
 
                             {win ? (
                                 <Button

@@ -6,7 +6,7 @@ const Logo = () => {
 
     return (
         <img
-            className="cursor-pointer"
+            className="cursor-pointer ml-[76px]"
             src="/images/logo.svg"
             alt=""
             onClick={() => {
