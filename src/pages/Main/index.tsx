@@ -8,7 +8,7 @@ function Main() {
     return (
         <>
             <div className="container">
-                <div className="py-[73px]">
+                <div className="pt-[92px] pb-[120px]">
                     <Logo />
                 </div>
 

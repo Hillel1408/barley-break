@@ -99,7 +99,7 @@ function Game() {
             {userData.user_id ? (
                 <div>
                     <div className="container">
-                        <div className="py-[73px] flex justify-between items-center">
+                        <div className="pt-[92px] pb-[120px] flex justify-between items-center">
                             <Logo />
 
                             {!win && (
