@@ -18,13 +18,11 @@ function Main() {
                         navigate(ROUTES.LOGIN);
                     }}
                 >
-                    {false && (
-                        <video autoPlay loop muted playsInline className="relative z-10">
-                            <source src="/video/VID_20231201_122949_907.mp4" type="video/mp4" />
-                        </video>
-                    )}
+                    <video autoPlay loop muted playsInline className="relative z-10">
+                        <source src="/video/skating_back3.mp4" type="video/mp4" />
+                    </video>
 
-                    <img src="/images/img-2.png" alt="" />
+                    {false && <img src="/images/img-2.png" alt="" />}
 
                     <div className="absolute bottom-[158px] left-0 right-0 text-center flex flex-col gap-[70px] items-center z-30">
                         <svg className="h-[210px] w-[177px]" aria-hidden="true">
