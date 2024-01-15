@@ -37,8 +37,7 @@ function Main() {
                     <div
                         className="absolute h-full w-full top-0 z-20"
                         style={{
-                            background:
-                                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.70) 63.37%)",
+                            background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.70) 63.37%)",
                         }}
                     ></div>
                 </div>

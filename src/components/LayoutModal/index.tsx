@@ -14,13 +14,7 @@ const LayoutModal = ({ children, closeModal, active, className }: LayoutModalPro
             }}
         >
             <div className="py-5 flex items-center justify-center min-h-full">
-                <div
-                    className={classNames(
-                        "bg-white rounded-[32px] relative overflow-hidden",
-                        className,
-                    )}
-                    onClick={(e) => e.stopPropagation()}
-                >
+                <div className={classNames("bg-white rounded-[32px] relative overflow-hidden", className)} onClick={(e) => e.stopPropagation()}>
                     {children}
                 </div>
             </div>

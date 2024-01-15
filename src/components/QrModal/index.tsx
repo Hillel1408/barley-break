@@ -14,8 +14,7 @@ const QrModal = ({ active, setActive }: { active: boolean; setActive: (a: boolea
         >
             <div className="flex flex-col gap-[58px]">
                 <p className="text-[#000] text-[32px] font-bold text-center">
-                    Зарегистрируйтесь на платформе, отсканировав QR код, зарабатывайте купоны и
-                    выигрывайте призы.
+                    Зарегистрируйтесь на платформе, отсканировав QR код, зарабатывайте купоны и выигрывайте призы.
                 </p>
 
                 <img src="/images/qr.jpg" alt="" />

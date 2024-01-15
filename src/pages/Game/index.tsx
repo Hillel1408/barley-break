@@ -1,14 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import classNames from "classnames";
-import {
-    SecondaryButton,
-    Button,
-    ImageModal,
-    FinishModal,
-    Logo,
-    IdleTimerContainer,
-    Alert,
-} from "components";
+import { SecondaryButton, Button, ImageModal, FinishModal, Logo, IdleTimerContainer, Alert } from "components";
 import { useTimer } from "react-timer-hook";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/";
@@ -45,7 +37,7 @@ function Game() {
 
     const getCoupons = async () => {
         try {
-            const response = await axios.post("/v1/transactions/third-party", {
+            await axios.post("/v1/transactions/third-party", {
                 id: userData.id,
                 day: new Date().toLocaleDateString("en-ca"),
                 user_id: userData.user_id,
@@ -115,26 +107,16 @@ function Game() {
                                     className={classNames(
                                         "text-[80px] font-bold",
                                         userData.id === "puzzle_3x3" ? "mb-[235px]" : "mb-[329px]",
-                                        win
-                                            ? "text-[#00B23C]"
-                                            : seconds === 0 && minutes === 0
-                                            ? "text-[#F40A0A]"
-                                            : "text-[#000]",
+                                        win ? "text-[#00B23C]" : seconds === 0 && minutes === 0 ? "text-[#F40A0A]" : "text-[#000]",
                                     )}
                                 >
-                                    {win
-                                        ? "Победа!"
-                                        : seconds === 0 && minutes === 0
-                                        ? "Время вышло"
-                                        : "Соберите картинку"}
+                                    {win ? "Победа!" : seconds === 0 && minutes === 0 ? "Время вышло" : "Соберите картинку"}
                                 </h1>
 
                                 <p className="absolute top-[130px] text-[36px] text-[#000] font-bold left-0 right-0">
                                     {win
                                         ? `Поздравляем, ${userData.name}! Вы верно собрали картинку`
-                                        : seconds === 0 &&
-                                          minutes === 0 &&
-                                          "В следующий раз, попробуйте действовать быстрее"}
+                                        : seconds === 0 && minutes === 0 && "В следующий раз, попробуйте действовать быстрее"}
                                 </p>
                             </div>
 
@@ -142,9 +124,7 @@ function Game() {
                                 className={classNames(
                                     "grid grid-cols-[1fr_1fr_1fr] mb-2 border-[0.5px] border-[#000]",
                                     win && "outline outline-8 outline-[#00B23C] rounded-[4px]",
-                                    seconds === 0 &&
-                                        minutes === 0 &&
-                                        "outline outline-8 outline-[#F40A0A] rounded-[4px]",
+                                    seconds === 0 && minutes === 0 && "outline outline-8 outline-[#F40A0A] rounded-[4px]",
                                 )}
                             >
                                 {arr &&
@@ -152,18 +132,10 @@ function Game() {
                                         array.map((item, j) => (
                                             <div
                                                 key={item}
-                                                className={classNames(
-                                                    "group w-[268px] h-[268px] border-[0.5px] border-[#000] relative",
-                                                )}
+                                                className={classNames("group w-[268px] h-[268px] border-[0.5px] border-[#000] relative")}
                                                 onClick={() => {
                                                     if (!win && !(seconds === 0 && minutes === 0)) {
-                                                        correctArr(
-                                                            i,
-                                                            j,
-                                                            arr,
-                                                            number.current,
-                                                            setArr,
-                                                        );
+                                                        correctArr(i, j, arr, number.current, setArr);
 
                                                         if (isWin(arr)) {
                                                             pause();
@@ -174,16 +146,12 @@ function Game() {
                                                 }}
                                             >
                                                 {(item !== number.current || win) && (
-                                                    <img
-                                                        src={`/images/${image.current}/${userData.id}/${item}.jpeg`}
-                                                        alt=""
-                                                    />
+                                                    <img src={`/images/${image.current}/${userData.id}/${item}.jpeg`} alt="" />
                                                 )}
                                                 <div
                                                     className={classNames(
                                                         "absolute left-0 right-0 top-0 bottom-0 duration-100 opacity-0",
-                                                        !(seconds === 0 && minutes === 0) &&
-                                                            "group-active:opacity-100",
+                                                        !(seconds === 0 && minutes === 0) && "group-active:opacity-100",
                                                     )}
                                                     style={{
                                                         background:
@@ -196,24 +164,16 @@ function Game() {
                             </div>
 
                             {false && (
-                                <p
-                                    className={classNames(
-                                        "text-[#000] text-[16px] font-bold text-center",
-                                    )}
-                                >
-                                    Дивизион {division[image.current - 1]} Фонбет Неделя звезд
-                                    хоккея 2022. Мастер-шоу КХЛ <br /> 10 Декабря 2022 г. Челябинск,
-                                    ЛА Трактор
+                                <p className={classNames("text-[#000] text-[16px] font-bold text-center")}>
+                                    Дивизион {division[image.current - 1]} Фонбет Неделя звезд хоккея 2022. Мастер-шоу КХЛ <br /> 10 Декабря 2022 г.
+                                    Челябинск, ЛА Трактор
                                 </p>
                             )}
 
                             {win ? (
                                 <Button
                                     text="ПОЛУЧИТЬ КУПОНЫ"
-                                    className={classNames(
-                                        "w-[802px] bg-[#00B23C]",
-                                        userData.id === "puzzle_3x2" ? "mt-[202px]" : "mt-[20px]",
-                                    )}
+                                    className={classNames("w-[802px] bg-[#00B23C]", userData.id === "puzzle_3x2" ? "mt-[202px]" : "mt-[20px]")}
                                     clickHandler={() => {
                                         navigate(ROUTES.HOME);
                                     }}
@@ -221,21 +181,13 @@ function Game() {
                             ) : seconds === 0 && minutes === 0 ? (
                                 <Button
                                     text="ЗАВЕРШИТЬ ИГРУ"
-                                    className={classNames(
-                                        "w-[802px] bg-[#F40A0A]",
-                                        userData.id === "puzzle_3x2" ? "mt-[202px]" : "mt-[20px]",
-                                    )}
+                                    className={classNames("w-[802px] bg-[#F40A0A]", userData.id === "puzzle_3x2" ? "mt-[202px]" : "mt-[20px]")}
                                     clickHandler={() => {
                                         navigate(ROUTES.HOME);
                                     }}
                                 />
                             ) : (
-                                <div
-                                    className={classNames(
-                                        "flex justify-between w-full",
-                                        userData.id === "puzzle_3x2" ? "mt-[226px]" : "mt-[60px]",
-                                    )}
-                                >
+                                <div className={classNames("flex justify-between w-full", userData.id === "puzzle_3x2" ? "mt-[226px]" : "mt-[60px]")}>
                                     <SecondaryButton
                                         text="Смотреть подсказку"
                                         className="text-[#8D1BFF]"
@@ -264,12 +216,7 @@ function Game() {
                         </div>
                     </div>
 
-                    <ImageModal
-                        active={active}
-                        setActive={setActive}
-                        image={image.current}
-                        difficulty={userData.id}
-                    />
+                    <ImageModal active={active} setActive={setActive} image={image.current} difficulty={userData.id} />
 
                     <FinishModal active={activeModal} setActive={setActiveModal} />
                 </div>

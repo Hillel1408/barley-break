@@ -3,13 +3,7 @@ import { LayoutModal, Button } from "components";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/";
 
-const FinishModal = ({
-    active,
-    setActive,
-}: {
-    active: boolean;
-    setActive: (a: boolean) => void;
-}) => {
+const FinishModal = ({ active, setActive }: { active: boolean; setActive: (a: boolean) => void }) => {
     const navigate = useNavigate();
 
     active && document.body.classList.add("lock");

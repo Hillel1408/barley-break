@@ -12,10 +12,7 @@ const SecondaryButton = ({
     clickHandler?: () => void;
 }) => {
     return (
-        <button
-            className={classNames("text-[32px] font-bold flex items-center gap-[11px]", className)}
-            onClick={clickHandler}
-        >
+        <button className={classNames("text-[32px] font-bold flex items-center gap-[11px]", className)} onClick={clickHandler}>
             {children}
             {text}
         </button>

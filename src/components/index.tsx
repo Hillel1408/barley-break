@@ -8,14 +8,4 @@ import Logo from "components/Logo";
 import IdleTimerContainer from "components/IdleTimerContainer";
 import Alert from "components/Alert";
 
-export {
-    Button,
-    SecondaryButton,
-    LayoutModal,
-    QrModal,
-    ImageModal,
-    FinishModal,
-    Logo,
-    IdleTimerContainer,
-    Alert,
-};
+export { Button, SecondaryButton, LayoutModal, QrModal, ImageModal, FinishModal, Logo, IdleTimerContainer, Alert };

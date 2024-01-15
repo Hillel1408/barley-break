@@ -31,8 +31,6 @@ function Login() {
                         hash: `${process.env.REACT_APP_HASH}`,
                     });
 
-                    console.log(response);
-
                     setUser(response.data.data);
                     dispatch(setDataUser({ user_id: value, name: response.data.data.name }));
                 } catch (e: any) {
@@ -53,9 +51,7 @@ function Login() {
                 </div>
 
                 <div className="bg-white rounded-t-[100px] pt-[421px] pb-[96px] px-[220px] flex flex-col items-center gap-[10px] min-h-[1597px]">
-                    <span className="text-[#F54D0D] text-[36px] font-bold tracking-[0.72px]">
-                        ВВЕДИТЕ СВОЙ ID
-                    </span>
+                    <span className="text-[#F54D0D] text-[36px] font-bold tracking-[0.72px]">ВВЕДИТЕ СВОЙ ID</span>
 
                     <div className="relative">
                         <input
@@ -124,8 +120,7 @@ function Login() {
                             </svg>
 
                             <span className="text-[#F40A0A] text-[32px] font-bold text-center">
-                                Пользователь с таким ID не найден! Проверьте, что введен правильный
-                                код
+                                Пользователь с таким ID не найден! Проверьте, что введен правильный код
                             </span>
                         </div>
                     ) : (
@@ -150,11 +145,7 @@ function Login() {
                                 }}
                             />
 
-                            <p
-                                className={classNames(
-                                    "text-[32px] font-bold text-center -mx-[100px] mt-[32px] text-[#000]",
-                                )}
-                            >
+                            <p className={classNames("text-[32px] font-bold text-center -mx-[100px] mt-[32px] text-[#000]")}>
                                 {user.played_before.length === 0 &&
                                     `Выберите уровень сложности игры, ${user.name}. У вас будет 3 минуты, чтобы собрать картинку из фрагментов`}
 

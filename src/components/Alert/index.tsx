@@ -20,9 +20,7 @@ const Alert = () => {
 
     return alert.name ? (
         <div
-            className={classNames(
-                "text-white z-20 fixed w-full top-0 h-20 flex items-center justify-center text-[32px] font-bold",
-            )}
+            className={classNames("text-white z-20 fixed w-full top-0 h-20 flex items-center justify-center text-[32px] font-bold")}
             style={{ backgroundColor: alert.color }}
         >
             {alert.name}
