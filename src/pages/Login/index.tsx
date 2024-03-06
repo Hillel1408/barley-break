@@ -13,7 +13,7 @@ function Login() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const [user, setUser] = useState({ name: "", played_before: [""] });
+    const [user, setUser] = useState({ name: "", played_before: [""], status: "" });
 
     const [active, setActive] = useState(false);
 
@@ -31,7 +31,7 @@ function Login() {
                         hash: `${process.env.REACT_APP_HASH}`,
                     });
 
-                    setUser(response.data.data);
+                    setUser({ ...response.data.data, status: response.data.status });
                     dispatch(setDataUser({ user_id: value, name: response.data.data.name }));
                 } catch (e: any) {
                     setError(e.response?.data?.message);
@@ -124,38 +124,40 @@ function Login() {
                             </span>
                         </div>
                     ) : (
-                        <div className="mt-[60px] flex flex-col gap-[20px] items-center">
-                            <Button
-                                text="СЛОЖНАЯ ИГРА"
-                                className="w-[640px] bg-[#00B23C] leading-[170px]"
-                                disabled={user.played_before.includes("puzzle_3x3")}
-                                clickHandler={() => {
-                                    dispatch(setDataUser({ id: "puzzle_3x3" }));
-                                    navigate(ROUTES.GAME);
-                                }}
-                            />
+                        user.status === "success" && (
+                            <div className="mt-[60px] flex flex-col gap-[20px] items-center">
+                                <Button
+                                    text="СЛОЖНАЯ ИГРА"
+                                    className="w-[640px] bg-[#00B23C] leading-[170px]"
+                                    disabled={user.played_before.includes("puzzle_3x3")}
+                                    clickHandler={() => {
+                                        dispatch(setDataUser({ id: "puzzle_3x3" }));
+                                        navigate(ROUTES.GAME);
+                                    }}
+                                />
 
-                            <Button
-                                text="ПРОСТАЯ ИГРА"
-                                className="w-[640px] bg-[#00B23C]"
-                                disabled={user.played_before.includes("puzzle_3x2")}
-                                clickHandler={() => {
-                                    dispatch(setDataUser({ id: "puzzle_3x2" }));
-                                    navigate(ROUTES.GAME);
-                                }}
-                            />
+                                <Button
+                                    text="ПРОСТАЯ ИГРА"
+                                    className="w-[640px] bg-[#00B23C]"
+                                    disabled={user.played_before.includes("puzzle_3x2")}
+                                    clickHandler={() => {
+                                        dispatch(setDataUser({ id: "puzzle_3x2" }));
+                                        navigate(ROUTES.GAME);
+                                    }}
+                                />
 
-                            <p className={classNames("text-[32px] font-bold text-center -mx-[100px] mt-[32px] text-[#000]")}>
-                                {user.played_before.length === 0 &&
-                                    `Выберите уровень сложности игры, ${user.name}. У вас будет 3 минуты, чтобы собрать картинку из фрагментов`}
+                                <p className={classNames("text-[32px] font-bold text-center -mx-[100px] mt-[32px] text-[#000]")}>
+                                    {user.played_before.length === 0 &&
+                                        `Выберите уровень сложности игры, ${user.name}. У вас будет 3 минуты, чтобы собрать картинку из фрагментов`}
 
-                                {user.played_before.length === 1 &&
-                                    `${user.name}, вы уже прошли одну из игр. Теперь вы можете заработать дополнительные баллы, сыграв во вторую.`}
+                                    {user.played_before.length === 1 &&
+                                        `${user.name}, вы уже прошли одну из игр. Теперь вы можете заработать дополнительные баллы, сыграв во вторую.`}
 
-                                {user.played_before.length === 2 &&
-                                    `Молодец, ${user.name}! Вы прошли обе игры и получили за них максимальное количество купонов на сегодня`}
-                            </p>
-                        </div>
+                                    {user.played_before.length === 2 &&
+                                        `Молодец, ${user.name}! Вы прошли обе игры и получили за них максимальное количество купонов на сегодня`}
+                                </p>
+                            </div>
+                        )
                     )}
                 </div>
             </div>
